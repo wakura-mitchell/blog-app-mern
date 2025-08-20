@@ -1,0 +1,70 @@
+import { useState, useEffect } from 'react'
+import './App.css'
+// import axios from 'axios'
+import { getPosts, getPost, createPost, updatePost, deletePost } from './api/api'
+
+function App() {
+    // this frontend is a simple React Blog app that does demonstrate in context of MERN the backend connectivity
+    // and the ability to make API calls to the backend server.
+
+    // lets make a state variable to hold the data
+    const [posts, setPosts] = useState()
+
+    // testing create post route
+    function makePost() {
+        // hardcoded post data
+        let postObject = {
+            title: 'Sample Post after API Call 3',
+            description: 'This is a sample post description after API call 3.',
+            content: 'This is a sample post content API call 3.',
+            author: 'From API Call 3',
+            dateCreated: new Date()
+        }
+        createPost(postObject)
+    }
+
+    // we will use useEffect to fetch data from the backend when the component
+    useEffect(() => {
+        // function to fetch data from the backend
+        // async function fetchData() {
+        //     // make a GET request to the backend API
+        //     const response = await axios.get('http://localhost:3000/posts/')
+        //     // response logic
+        //     if (response.status === 200) {
+        //         setData(response.data) // set the data state variable with the response data
+        //         console.log('Data fetched successfully:', response.data) // log a success message
+        //     } else if (response.status === 404) {
+        //         console.error('Data not found') // log a not found message
+        //     }
+        // }
+        // // call the fetchData function
+        // fetchData()
+
+        // using api module to fetch posts
+        async function fetchAllPosts() {
+            let data = await getPosts() // call the getPosts function from the api module
+            if (data) {
+                setPosts(data) // set the posts state variable with the fetched data
+                console.log('Posts fetched successfully:', data) // log a success message
+            }
+        }
+        fetchAllPosts()
+    }, [])
+
+    return (
+        <>
+            {/* we are going to be using axios */}
+            {/* when dealing with data we often use useEffect */}
+
+            {/* uncomment to use getPost() */}
+            {/* {JSON.stringify(post)} */}
+
+            {/* uncomment to use createPost()*/}
+            <button onClick={makePost}>
+                Create Post
+            </button>
+        </>
+    )
+}
+
+export default App

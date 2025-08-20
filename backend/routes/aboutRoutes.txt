@@ -1,0 +1,11 @@
+// about routes
+this is the 3rd step in the fullstack development.
+connecting our backend to the frontend.
+it is done by creating what is called a middleware.
+it is done by express in the mern context
+and it allows us to connect frontend and backend functionalities
+it is done by creating http routes with our backend that our frontend can then interact with
+every route is associated with one function
+there are 2 types of router
+1 frontend routes (react router) - for different pages in our FE - returns web pages (react components)
+2 backend routes (express) - returns json data
