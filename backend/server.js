@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 // importing our routes
 const posts = require("./routes/postRoutes.js");
+const users = require("./routes/userRoutes.js");
 
 // create express application
 const app = express();
@@ -14,6 +15,7 @@ const PORT = 3000;
 app.use(cors()); // app.use is a function that mounts middleware, tell express how to share resources across domains
 app.use(express.json()); // app.use is a function that mounts middleware, tell express to parse incoming JSON requests
 app.use(posts);
+app.use(users);
 
 // setting express server
 app.listen(PORT, () => {

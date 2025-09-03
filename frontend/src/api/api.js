@@ -9,6 +9,7 @@ import axios from "axios";
 // define the base URL for the API
 const API_URL = "http://localhost:3000/";
 
+// read all function
 export async function getPosts() {
 	// function to get all posts
 	const response = await axios.get(`${API_URL}posts`);
@@ -21,6 +22,7 @@ export async function getPosts() {
 	}
 }
 
+// get one by _id function
 export async function getPost(id) {
 	// function to get a specific post by ID
 	const response = await axios.get(`${API_URL}posts/${id}`);
@@ -33,15 +35,19 @@ export async function getPost(id) {
 	}
 }
 
+// create function
 export async function createPost(post) {
 	// function to create a new post
 	const response = await axios.post(`${API_URL}posts`, post);
 	// check if the response is successful
 	if (response.status === 201) {
 		return response.data; // return the data from the response
+	} else {
+		throw new Error("Failed to create post");
 	}
 }
 
+// update function
 export async function updatePost(id, post) {
 	// function to update an existing post by ID
 	const response = await axios.put(`${API_URL}posts/${id}`, post);
@@ -53,6 +59,7 @@ export async function updatePost(id, post) {
 	}
 }
 
+// delete function
 export async function deletePost(id) {
 	// function to delete a post by ID
 	const response = await axios.delete(`${API_URL}posts/${id}`);
@@ -61,5 +68,47 @@ export async function deletePost(id) {
 		return response.data; // return the data from the response
 	} else {
 		throw new Error("Failed to delete post"); // throw an error if the request fails
+	}
+}
+
+// Users crud functions
+
+// get one by _id function
+export async function getUser(id) {
+	const response = await axios.get(`${API_URL}users/${id}`);
+	if (response.status === 200) {
+		return response.data;
+	} else {
+		throw new Error("Failed to fetch user by ID");
+	}
+}
+
+// create function
+export async function createUser(user) {
+	try {
+		const response = await axios.post(`${API_URL}users`, user);
+		// Return response data for both success (201) and client errors (400)
+		if (response.status === 201 || response.status === 400) {
+			return response.data;
+		} else {
+			throw new Error("Failed to create user");
+		}
+	} catch (error) {
+		// If it's a 400 error, return the response data so frontend can handle the message
+		if (error.response && error.response.status === 400) {
+			return error.response.data;
+		}
+		// For other errors, throw the error
+		throw error;
+	}
+}
+
+// update function
+export async function updateUser(id, user) {
+	const response = await axios.put(`${API_URL}users/${id}`, user);
+	if (response.status === 200) {
+		return response.data;
+	} else {
+		throw new Error("Failed to update user");
 	}
 }

@@ -50,7 +50,7 @@ export const CreateBlog = () => {
             <div className="max-w-4xl mx-auto">
                 {/* Header Section */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    <h1 className="text-4xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text">
                         Create New Blog Post
                     </h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -151,8 +151,8 @@ export const CreateBlog = () => {
                                 type="submit"
                                 disabled={loading}
                                 className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 shadow-md ${loading
-                                        ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105'
+                                    ? 'bg-gray-400 cursor-not-allowed'
+                                    : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105'
                                     }`}
                             >
                                 {loading ? (
